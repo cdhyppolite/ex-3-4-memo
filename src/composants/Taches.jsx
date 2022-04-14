@@ -67,6 +67,15 @@ export default function Taches({etatTaches, utilisateur}) {
       )
     );
   }
+  function gererTriTaches(choixTri, ordreTri) {
+    alert('Tri: '+choixTri);
+  }
+  function gererTriDate() {
+    gererTriTaches('date','asc');
+  }
+  function gererTriNom() {
+    gererTriTaches('nom','des');
+  }
 
   return (
     <section className="Taches">
@@ -80,8 +89,8 @@ export default function Taches({etatTaches, utilisateur}) {
         />
       </form>
       <div className="titre-liste-taches">
-        <span className="texte">Tâche</span>
-        <span className="date">Date d'ajout</span>
+        <span className="texte" onClick={gererTriNom}>Tâche</span>
+        <span className="date" onClick={gererTriDate}>Date d'ajout</span>
       </div>
       <div className="liste-taches">
         {
