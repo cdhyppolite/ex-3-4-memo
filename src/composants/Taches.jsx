@@ -52,7 +52,19 @@ export default function Taches({etatTaches, utilisateur}) {
   }
   function modifierEtatTache(idTache,etat) {
     tacheModele.modifier(utilisateur.uid, idTache,etat).then(
-      tache => setTaches([tache, ...taches])
+      
+      // Enlever la tache modifier
+      () => setTaches(
+
+        /*taches.filter(
+          tache => [tache,tache.id !== idTache]
+        )*/
+        
+        
+        taches.filter(
+          tache => tache.id !== idTache
+        )
+      )
     );
   }
 

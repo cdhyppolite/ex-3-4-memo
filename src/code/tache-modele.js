@@ -1,5 +1,5 @@
 import { bdFirestore, collUtil, collTaches } from './init';
-import { collection, getDoc, getDocs, addDoc, Timestamp, doc, updateDoc, deleteDoc } from "firebase/firestore";
+import { collection, getDoc, getDocs, addDoc, Timestamp, doc, updateDoc, deleteDoc, query, orderBy } from "firebase/firestore";
 
 /**
  * Créer une nouvelle tâche pour l'utilisateur connecté
@@ -23,7 +23,8 @@ export async function creer(uid, tache) {
  * @returns {Promise<any[]>} Promesse avec le tableau des tâches
  */
 export async function lireTout(uid) {
-    return getDocs(collection(bdFirestore, collUtil, uid, collTaches)).then(
+    return getDocs(query(collection(bdFirestore, collUtil, uid, collTaches),
+        orderBy('date', 'desc'))).then(
         qs => qs.docs.map(doc => ({ id: doc.id, ...doc.data() }))
     );
 }
@@ -36,6 +37,7 @@ export async function supprimer(uid, idTache) {
 export async function modifier(uid, idTache, etat) {
     let refDoc = doc(bdFirestore, collUtil, uid, collTaches, idTache);
     return await updateDoc(refDoc, {
-        fini: !etat
+        fini: !etat,
+        // date: Timestamp.fromDate(new Date())
     });
 }
