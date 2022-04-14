@@ -43,6 +43,14 @@ export default function Taches({etatTaches, utilisateur}) {
     }
   }
 
+  function supprimerTache(idTache) {
+    tacheModele.supprimer(utilisateur.uid, idTache).then(
+      () => setTaches(taches.filter(
+        tache => tache.id !== idTache
+      ))
+    );
+  }
+
   return (
     <section className="Taches">
       <form onSubmit={e => gererAjoutTache(uid, e)}>
@@ -60,7 +68,7 @@ export default function Taches({etatTaches, utilisateur}) {
       </div>
       <div className="liste-taches">
         {
-          taches.map(tache => <Tache key={tache.id} {... tache} />)
+          taches.map(tache => <Tache key={tache.id} {... tache} supprimerTache={supprimerTache} />)
         }
       </div>
     </section>

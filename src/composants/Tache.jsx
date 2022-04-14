@@ -6,18 +6,25 @@ import IconButton from '@mui/material/IconButton';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 
-export default function Tache({id, nom, fini, date}) {
-  let etat = "Tache";
-  if (fini==true) etat += " completee";
+export default function Tache({id, nom, fini, date, supprimerTache}) {
+
+  function gererEtat() {
+    alert("c");
+  };
+  function gererSupprimer() {
+    // alert("s");
+    supprimerTache(id);
+  }
+
   return (
-    <div className={etat}>
+    <div className={'Tache '+(fini ?'completee' : '')}>
       <IconButton color="success" className='btn-padding-reduit-gauche'>
-        <CheckCircleIcon />
+        <CheckCircleIcon onClick={gererEtat} />
       </IconButton>
       <span className="texte">{nom}</span>
       <span className="date">({formaterDateEtHeure(date)})</span>
       <IconButton color="error" className='btn-padding-reduit-droite'>
-        <RemoveCircleIcon />
+        <RemoveCircleIcon  onClick={gererSupprimer}/>
       </IconButton>
     </div>
   );
