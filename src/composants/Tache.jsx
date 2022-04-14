@@ -9,7 +9,6 @@ import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 export default function Tache({id, nom, fini, date, supprimerTache, modifierEtatTache}) {
 
   function gererEtat() {
-    // alert("c");
     modifierEtatTache(id, fini);
   };
   function gererSupprimer() {

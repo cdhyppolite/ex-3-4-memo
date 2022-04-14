@@ -1,6 +1,6 @@
 import { authFirebase, authGoogle } from './init';
 import { signInWithPopup, onAuthStateChanged, signOut } from "firebase/auth";
-import { doc, collection, setDoc, addDoc } from "firebase/firestore"; 
+import { doc, collection, setDoc, addDoc } from "firebase/firestore";
 import { bdFirestore, collUtil, collTaches } from './init';
 
 /**
@@ -8,7 +8,7 @@ import { bdFirestore, collUtil, collTaches } from './init';
  * @returns {Promise} promesse contenant un objet UserCredentials (ou erreur).
  */
 export function connexion() {
-  return signInWithPopup(authFirebase, authGoogle);
+    return signInWithPopup(authFirebase, authGoogle);
 }
 
 /**
@@ -18,15 +18,15 @@ export function connexion() {
  * @returns {Function} Fonction qui annule le gestionnaire d'événement
  */
 export function observerConnexion(mutateurEtatUtil) {
-  onAuthStateChanged(authFirebase, util => {
-    // On fait la mutation de l'état utilisateur
-    mutateurEtatUtil(util);
-    // Si un utilisateur est connecté ...
-    if(util) {
-      // ... on créé son profil dans la collection Firestore au besoin
-      creerProfil(util.uid, util.displayName, util.email);
-    }
-  });
+    onAuthStateChanged(authFirebase, util => {
+        // On fait la mutation de l'état utilisateur
+        mutateurEtatUtil(util);
+        // Si un utilisateur est connecté ...
+        if (util) {
+            // ... on créé son profil dans la collection Firestore au besoin
+            creerProfil(util.uid, util.displayName, util.email);
+        }
+    });
 }
 
 /**
@@ -36,16 +36,15 @@ export function observerConnexion(mutateurEtatUtil) {
  * @param {string} courriel Adresse courriel de l'utilisateur
  */
 export async function creerProfil(id, nom, courriel) {
-  await setDoc(
-          doc(bdFirestore, collUtil, id), 
-          {nom: nom, courriel: courriel}, 
-          {merge: true}
-        );
+    await setDoc(
+        doc(bdFirestore, collUtil, id), { nom: nom, courriel: courriel }, { merge: true }
+    );
 }
 
 /**
  * Déconnecter l'utilisateur de Firebase Auth
  */
 export function deconnexion() {
-  signOut(authFirebase);
+    if (confirm('Voulez-vous vraiment vous déconnecter?'))
+        signOut(authFirebase);
 }
