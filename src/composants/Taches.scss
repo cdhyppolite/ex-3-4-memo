@@ -1,0 +1,47 @@
+.Taches {
+  width: 100%;
+
+  input {
+    box-sizing: border-box;
+    margin: 0;
+    width: 100%;
+    height: 30px;
+    border: none;
+    border-bottom: 1px solid #444;
+    margin-bottom: 20px;
+    outline: none;
+    font-size: 1em;
+    padding: 20px 10px;
+    background-color: #fffdd0;
+    color: #999;
+
+    &::-webkit-input-placeholder { 
+      color: #aaa;
+    }
+  }
+
+  .titre-liste-taches {
+    border-bottom: 2px dotted #aaa;
+    margin: 0 3rem .75rem 3rem;
+    padding-bottom: 0.25rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: #777;
+
+    .texte,
+    .date {
+      cursor: pointer;
+      transition: color 0.5s;
+
+      &::after {
+        content: "\21F5";
+        padding-left: 0.25rem;
+      }
+
+      &:hover {
+        color: #000;
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+.Appli {
+  width: 50vw;
+  min-width: 550px;
+  margin: 0 auto;
+  text-align: center;
+
+  .appli-entete {
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+  
+    .appli-logo {
+      width: 100px;
+      pointer-events: none;
+    }
+    
+  }
+  
+}
+
