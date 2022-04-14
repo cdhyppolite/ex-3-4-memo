@@ -13,8 +13,8 @@ export default function Tache({id, nom, fini, date, supprimerTache, modifierEtat
     modifierEtatTache(id, fini);
   };
   function gererSupprimer() {
-    // alert("s");
-    supprimerTache(id);
+    if (confirm('Voulez-vous vraiment supprimer cette tâche?\nElle sera perdue à jamais.')) 
+      supprimerTache(id);
   }
 
   return (

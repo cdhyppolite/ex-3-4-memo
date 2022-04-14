@@ -10,7 +10,7 @@ export default function Taches({etatTaches, utilisateur}) {
   /**
    * On cherche les tâches une seule fois après l'affichage du composant
    */
-  useEffect(() => 
+  useEffect( (choixTri, ordreTri) => 
     tacheModele.lireTout(uid,'date', 'desc').then(
       taches => setTaches(taches)
     )
