@@ -50,6 +50,11 @@ export default function Taches({etatTaches, utilisateur}) {
       ))
     );
   }
+  function modifierEtatTache(idTache,etat) {
+    tacheModele.modifier(utilisateur.uid, idTache,etat).then(
+      tache => setTaches([tache, ...taches])
+    );
+  }
 
   return (
     <section className="Taches">
@@ -68,7 +73,7 @@ export default function Taches({etatTaches, utilisateur}) {
       </div>
       <div className="liste-taches">
         {
-          taches.map(tache => <Tache key={tache.id} {... tache} supprimerTache={supprimerTache} />)
+          taches.map(tache => <Tache key={tache.id} {... tache} supprimerTache={supprimerTache} modifierEtatTache={modifierEtatTache} />)
         }
       </div>
     </section>

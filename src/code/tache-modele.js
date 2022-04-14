@@ -32,3 +32,10 @@ export async function supprimer(uid, idTache) {
     let refDoc = doc(bdFirestore, collUtil, uid, collTaches, idTache);
     return await deleteDoc(refDoc);
 }
+
+export async function modifier(uid, idTache, etat) {
+    let refDoc = doc(bdFirestore, collUtil, uid, collTaches, idTache);
+    return await updateDoc(refDoc, {
+        fini: !etat
+    });
+}

@@ -6,10 +6,11 @@ import IconButton from '@mui/material/IconButton';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 
-export default function Tache({id, nom, fini, date, supprimerTache}) {
+export default function Tache({id, nom, fini, date, supprimerTache, modifierEtatTache}) {
 
   function gererEtat() {
-    alert("c");
+    // alert("c");
+    modifierEtatTache(id, fini);
   };
   function gererSupprimer() {
     // alert("s");
