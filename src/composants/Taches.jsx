@@ -11,7 +11,7 @@ export default function Taches({etatTaches, utilisateur}) {
    * On cherche les tâches une seule fois après l'affichage du composant
    */
   useEffect(() => 
-    tacheModele.lireTout(uid).then(
+    tacheModele.lireTout(uid,'date', 'desc').then(
       taches => setTaches(taches)
     )
   , [setTaches, uid]);

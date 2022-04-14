@@ -22,9 +22,9 @@ export async function creer(uid, tache) {
  * @param {string} uid identifiant d'utilisateur Firebase 
  * @returns {Promise<any[]>} Promesse avec le tableau des tâches
  */
-export async function lireTout(uid) {
+export async function lireTout(uid, choixTri, ordreTri) {
     return getDocs(query(collection(bdFirestore, collUtil, uid, collTaches),
-        orderBy('date', 'desc'))).then(
+        orderBy(choixTri, ordreTri))).then(
         qs => qs.docs.map(doc => ({ id: doc.id, ...doc.data() }))
     );
 }
