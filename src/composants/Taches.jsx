@@ -50,6 +50,7 @@ export default function Taches({etatTaches, utilisateur}) {
       ))
     );
   }
+
   function modifierEtatTache(idTache, etat) {
     // Modifier la tâche dans Firebase
     tacheModele.modifier(utilisateur.uid, idTache, etat).then(
@@ -66,6 +67,11 @@ export default function Taches({etatTaches, utilisateur}) {
   }
   function gererTriTaches(choixTri, ordreTri) {
     alert('Tri: '+choixTri);
+    // let test = ordreTri==(('asc'||null) ? 'desc' : 'asc')
+
+    /*tacheModele.lireTout(uid,choixTri, (ordreTri==(('asc'||null) ? 'desc' : 'asc'))).then(
+      taches => setTaches(taches)
+    )*/
   }
   function gererTriDate() {
     gererTriTaches('date','asc');

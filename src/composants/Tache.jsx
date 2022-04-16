@@ -16,7 +16,7 @@ import { useState, useEffect } from 'react';
 
 export default function Tache({id, nom, fini, date, supprimerTache, modifierEtatTache}) {
   
-  const [ouvert, setOuvert] = useState(null);
+  const [ouvert, setOuvert] = useState(false);
 
   function gererOuvert () {
     setOuvert(true);
@@ -66,4 +66,3 @@ export default function Tache({id, nom, fini, date, supprimerTache, modifierEtat
     </div>
     );
 }
-// -----------------
