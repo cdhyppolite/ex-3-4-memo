@@ -52,19 +52,14 @@ export default function Taches({etatTaches, utilisateur}) {
   }
   function modifierEtatTache(idTache,etat) {
     tacheModele.modifier(utilisateur.uid, idTache,etat).then(
-      
-      // Enlever la tache modifier
-      () => setTaches(
-
-        /*taches.filter(
-          tache => [tache,tache.id !== idTache]
-        )*/
-        
-        
-        taches.filter(
-          tache => tache.id !== idTache
-        )
+      () => {
+        setTaches(taches.map(tache => {
+          if (tache.id == idTache)
+            tache.fini = !etat;
+          return tache;
+        })
       )
+      }
     );
   }
   function gererTriTaches(choixTri, ordreTri) {
