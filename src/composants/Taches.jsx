@@ -50,15 +50,17 @@ export default function Taches({etatTaches, utilisateur}) {
       ))
     );
   }
-  function modifierEtatTache(idTache,etat) {
-    tacheModele.modifier(utilisateur.uid, idTache,etat).then(
+  function modifierEtatTache(idTache, etat) {
+    // Modifier la tâche dans Firebase
+    tacheModele.modifier(utilisateur.uid, idTache, etat).then(
       () => {
+        // Changer la valeur de l'état pour que la classe change lors
+        // l'on réaffiche la liste des tâches.
         setTaches(taches.map(tache => {
           if (tache.id == idTache)
             tache.fini = !etat;
           return tache;
-        })
-      )
+        }))
       }
     );
   }
