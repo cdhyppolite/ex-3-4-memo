@@ -68,8 +68,11 @@ export default function Taches({etatTaches, utilisateur}) {
     );
   }
   function trierTaches(choixTri) {
-    setTri([choixTri, ((tri[1] == 'asc') ? 'desc' : 'asc')]);
-    console.log(tri);
+    // Si le tri est le même, on change l'orde,
+    // Sinon on change le tri, mais on garde le même ordre
+    setTri([choixTri,
+      ((tri[0] == choixTri) ?((tri[1] == 'asc') ? 'desc' : 'asc') : tri[1])]);
+    // console.log(tri);
   }
 
   return (
