@@ -6,15 +6,17 @@ import { useState, useEffect } from 'react';
 export default function Taches({etatTaches, utilisateur}) {
   const uid = utilisateur.uid;
   const [taches, setTaches] = etatTaches;
+  const [tri, setTri] = useState(['date', 'desc']);
+
 
   /**
    * On cherche les tâches une seule fois après l'affichage du composant
    */
-  useEffect( (choixTri, ordreTri) => 
-    tacheModele.lireTout(uid,'date', 'desc').then(
+  useEffect( () => 
+    tacheModele.lireTout(uid, tri[0], tri[1]).then(
       taches => setTaches(taches)
     )
-  , [setTaches, uid]);
+  , [setTaches, uid, tri ]);
 
   /**
    * Gérer le formulaire d'ajout de nouvelle tâche en appelant la méthode 
@@ -65,19 +67,9 @@ export default function Taches({etatTaches, utilisateur}) {
       }
     );
   }
-  function gererTriTaches(choixTri, ordreTri) {
-    alert('Tri: '+choixTri);
-    // let test = ordreTri==(('asc'||null) ? 'desc' : 'asc')
-
-    /*tacheModele.lireTout(uid,choixTri, (ordreTri==(('asc'||null) ? 'desc' : 'asc'))).then(
-      taches => setTaches(taches)
-    )*/
-  }
-  function gererTriDate() {
-    gererTriTaches('date','asc');
-  }
-  function gererTriNom() {
-    gererTriTaches('nom','des');
+  function trierTaches(choixTri) {
+    setTri([choixTri, ((tri[1] == 'asc') ? 'desc' : 'asc')]);
+    console.log(tri);
   }
 
   return (
@@ -92,8 +84,8 @@ export default function Taches({etatTaches, utilisateur}) {
         />
       </form>
       <div className="titre-liste-taches">
-        <span className="texte" onClick={gererTriNom}>Tâche</span>
-        <span className="date" onClick={gererTriDate}>Date d'ajout</span>
+        <span className="texte" onClick={() => trierTaches('nom')}>Tâche</span>
+        <span className="date" onClick={() => trierTaches('date')}>Date d'ajout</span>
       </div>
       <div className="liste-taches">
         {

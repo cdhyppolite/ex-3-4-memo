@@ -15,7 +15,6 @@
 /build
 
 # Firebase
-/src/services/config-secret.js
 /.firebase
 .firebaserc
 firebase.json

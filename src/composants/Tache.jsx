@@ -35,13 +35,13 @@ export default function Tache({id, nom, fini, date, supprimerTache, modifierEtat
 
   return (
     <div className={'Tache '+(fini ?'completee' : '')}>
-      <IconButton color="success" className='btn-padding-reduit-gauche'>
-        <CheckCircleIcon onClick={gererEtat} />
+      <IconButton onClick={gererEtat} color="success" className='btn-padding-reduit-gauche'>
+        <CheckCircleIcon  />
       </IconButton>
       <span className="texte">{nom}</span>
       <span className="date">({formaterDateEtHeure(date)})</span>
-      <IconButton color="error" className='btn-padding-reduit-droite'>
-        <RemoveCircleIcon  onClick={gererOuvert}/>
+      <IconButton onClick={gererOuvert} color="error" className='btn-padding-reduit-droite'>
+        <RemoveCircleIcon />
       </IconButton>
       {/* Confirmation supression */}
       <Dialog
